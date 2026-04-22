@@ -30,4 +30,8 @@ public class BookingService {
 		return repo.existsById(roomNo);
 	}
 
+	// 🔥 ADD THIS METHOD
+	public Booking getBookingByRoomNo(int roomNo) {
+		return repo.findById(roomNo).orElse(null);
+	}
 }

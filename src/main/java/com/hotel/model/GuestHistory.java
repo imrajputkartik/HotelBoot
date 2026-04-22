@@ -1,17 +1,20 @@
 package com.hotel.model;
 
 import jakarta.persistence.*;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
+
 @Entity
-public class Booking {
+@Table(name = "guest_history") // 🔥 ADD THIS
+public class GuestHistory {
 
 	@Id
-	private int roomNo; // 🔥 PRIMARY KEY
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	private int id; // ✅ separate primary key
 
+	private int roomNo;
 	private String name;
 	private String gender;
 	private int members;
@@ -30,32 +33,18 @@ public class Booking {
 	@Temporal(TemporalType.DATE)
 	private Date checkOut;
 
-	public Booking() {
+	// 🔥 Constructor
+	public GuestHistory() {
 	}
 
-	public Booking(int roomNo, String name, String gender, int members, String address, String state,
-			String nationality, String adharNo, String mobile, Date checkIn, Date checkOut, Integer amount) {
+	// 🔥 Getters & Setters
 
-		this.roomNo = roomNo;
-		this.name = name;
-		this.gender = gender;
-		this.members = members;
-		this.address = address;
-		this.state = state;
-		this.nationality = nationality;
-		this.adharNo = adharNo;
-		this.mobile = mobile;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
-		this.amount= amount;
+	public int getId() {
+		return id;
 	}
 
-	public Integer getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Integer amount) {
-		this.amount = amount;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getRoomNo() {
@@ -130,6 +119,14 @@ public class Booking {
 		this.mobile = mobile;
 	}
 
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
 	public Date getCheckIn() {
 		return checkIn;
 	}
@@ -145,5 +142,4 @@ public class Booking {
 	public void setCheckOut(Date checkOut) {
 		this.checkOut = checkOut;
 	}
-
 }
