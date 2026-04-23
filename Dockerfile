@@ -2,8 +2,10 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY target/HotelBoot-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
+
+RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","app.jar"]
+CMD ["java","-jar","target/HotelBoot-0.0.1-SNAPSHOT.jar"]
